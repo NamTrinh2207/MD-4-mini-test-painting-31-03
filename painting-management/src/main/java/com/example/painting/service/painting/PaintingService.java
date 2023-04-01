@@ -36,15 +36,14 @@ public class PaintingService implements IPaintingService {
     }
 
     @Override
-    public Iterable<Painting> findAllByCategory(Category category) {
-        return paintingRepo.findAllByCategory(category);
+    public Page<Painting> findAllByCategory(Category category, Pageable pageable) {
+        return paintingRepo.findAllByCategory(category, pageable);
     }
 
     @Override
-    public Page<Painting> findAllByNameContaining(String name, Pageable pageable) {
-        return paintingRepo.findAllByNameContaining(name,pageable);
+    public Page<Painting> findAllByNameContainingAndCategory(String name, Category category, Pageable pageable) {
+        return paintingRepo.findAllByNameContainingAndCategory(name, category, pageable);
     }
-
 
     @Override
     public Page<Painting> findAll(Pageable pageable) {

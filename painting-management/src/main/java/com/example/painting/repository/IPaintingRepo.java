@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPaintingRepo extends PagingAndSortingRepository<Painting, Long> {
-    Iterable<Painting> findAllByCategory(Category category);
+    Page<Painting> findAllByCategory(Category category, Pageable pageable);
 
-    Page<Painting> findAllByNameContaining(String name, Pageable pageable);
+    Page<Painting> findAllByNameContainingAndCategory(String name,Category category, Pageable pageable);
 }

@@ -27,11 +27,13 @@ public class PaintingController {
     }
 
     // Hien thi va tim kiem
-    @GetMapping()
-    public ModelAndView list(@RequestParam("search") Optional<String> search, Pageable pageable) {
+    @GetMapping("")
+    public ModelAndView list(@RequestParam("search") Optional<String> search,
+                             @RequestParam("search2") Optional<Category> category,
+                             Pageable pageable) {
         Page<Painting> paintings;
-        if (search.isPresent()) {
-            paintings = paintingRepo.findAllByNameContaining(search.get(), pageable);
+        if (search.isPresent() || category.isPresent()) {
+            paintings = paintingRepo.findAllByNameContainingAndCategory(search.get(), category.get(), pageable);
         } else {
             paintings = paintingRepo.findAll(pageable);
         }
