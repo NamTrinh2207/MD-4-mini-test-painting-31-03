@@ -36,6 +36,10 @@
             <td th:text="${paintings.price}"></td>
         </tr>
         <tr>
+            <td> Ảnh:</td>
+            <td><img width="100" height="100" th:src="@{'/image/' + ${paintings.image}}" alt=""></td>
+        </tr>
+        <tr>
             <td> Danh mục:</td>
             <td th:if="${paintings.category}" th:text="${paintings.category.category}"></td>
         </tr>

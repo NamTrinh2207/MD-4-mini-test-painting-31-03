@@ -12,7 +12,7 @@
 <th:block th:if="${mess}">
     <p th:text="${mess}"></p>
 </th:block>
-<form th:object="${paintings}" th:action="@{/paintings/save}" th:method="post">
+<form th:object="${paintings}" th:action="@{/paintings/save}" th:method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Tên tranh:</td>
@@ -37,6 +37,10 @@
         <tr>
             <td>Giá:</td>
             <td><input type="text" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Ảnh:</td>
+            <td><input type="file" th:field="*{image}"></td>
         </tr>
         <tr>
             <td>Danh mục:</td>

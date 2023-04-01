@@ -1,12 +1,8 @@
 package com.example.painting.model;
 
-import javax.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-@Table(name = "painting")
-public class Painting {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PaintingFrom {
     private Long id;
     private String name;
     private Long height;
@@ -14,24 +10,13 @@ public class Painting {
     private String material;
     private String description;
     private Long price;
-    private String image;
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    private MultipartFile image;
     private Category category;
 
-    public Painting() {
+    public PaintingFrom() {
     }
 
-    public Painting(String name, Long height, Long width, String material, String description, Long price, String image, Category category) {
+    public PaintingFrom(String name, Long height, Long width, String material, String description, Long price, MultipartFile image, Category category) {
         this.name = name;
         this.height = height;
         this.width = width;
@@ -96,6 +81,14 @@ public class Painting {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public Category getCategory() {
