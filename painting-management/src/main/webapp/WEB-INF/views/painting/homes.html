@@ -21,7 +21,7 @@
 <a th:href="@{/paintings/create}">Create new painting</a>
 <form>
         <input placeholder="Nhập tên tranh..." name="search" type="text"/>
-        Danh mục:
+
         <select name="search2" th:object="${categories}">
             <option th:each="c :${categories}" th:value="${c.id}" th:text="${c.category}"></option>
         </select>
