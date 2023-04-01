@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete customer</title>
+</head>
+<body>
+<h1>Delete paintings</h1>
+<h2>Are you sure?</h2>
+
+<form th:action="@{/paintings/remove}" th:object="${paintings}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td> Name:</td>
+            <td th:text="${paintings.name}"></td>
+        </tr>
+        <tr>
+            <td> Chiều cao:</td>
+            <td th:text="${paintings.height}"></td>
+        </tr>
+        <tr>
+            <td> Chiều rộng:</td>
+            <td th:text="${paintings.width}"></td>
+        </tr>
+        <tr>
+            <td> Chất liệu:</td>
+            <td th:text="${paintings.material}"></td>
+        </tr>
+        <tr>
+            <td> Mô tả:</td>
+            <td th:text="${paintings.description}"></td>
+        </tr>
+        <tr>
+            <td> Giá:</td>
+            <td th:text="${paintings.price}"></td>
+        </tr>
+        <tr>
+            <td> Danh mục:</td>
+            <td th:if="${paintings.category}" th:text="${paintings.category.category}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">DELETE</button>
+                <button><a th:href="@{/paintings}">CANCEL</a></button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

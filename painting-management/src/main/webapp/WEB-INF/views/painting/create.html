@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create new painting</title>
+</head>
+<body>
+<h3>Create new painting</h3>
+<th:block th:if="${mess}">
+    <p th:text="${mess}"></p>
+</th:block>
+<form th:object="${paintings}" th:action="@{/paintings/save}" th:method="post">
+    <table>
+        <tr>
+            <td>Tên tranh:</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Chiều cao:</td>
+            <td><input type="text" th:field="*{height}"></td>
+        </tr>
+        <tr>
+            <td>Chiều rộng:</td>
+            <td><input type="text" th:field="*{width}"></td>
+        </tr>
+        <tr>
+            <td>Chất liệu:</td>
+            <td><input type="text" th:field="*{material}"></td>
+        </tr>
+        <tr>
+            <td>Mô tả:</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Giá:</td>
+            <td><input type="text" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Danh mục:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c: ${categories}" th:value="${c.id}" th:text="${c.category}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">SAVE</button>
+                <button><a th:href="@{/paintings}">HOME</a></button>
+            </td>
+
+        </tr>
+    </table>
+</form>
+</body>
+</html>
