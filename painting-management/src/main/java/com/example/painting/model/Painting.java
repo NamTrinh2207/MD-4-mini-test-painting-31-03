@@ -9,11 +9,17 @@ public class Painting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
     private Long height;
+
     private Long width;
+
     private String material;
+
     private String description;
+
     private Long price;
+
     private String image;
 
     public String getImage() {

@@ -16,37 +16,51 @@
     <table>
         <tr>
             <td>Tên tranh:</td>
-            <td><input type="text" th:field="*{name}"></td>
+            <td><input type="text" id="name" name="name" required></td>
         </tr>
         <tr>
-            <td>Chiều cao:</td>
-            <td><input type="text" th:field="*{height}"></td>
+            <td>Chiều cao (cm):</td>
+            <td><input type="number" id="height" name="height" required></td>
         </tr>
         <tr>
-            <td>Chiều rộng:</td>
-            <td><input type="text" th:field="*{width}"></td>
+            <td>Chiều rộng (cm):</td>
+            <td>
+                <input type="number" id="width" name="width" required>
+            </td>
         </tr>
         <tr>
             <td>Chất liệu:</td>
-            <td><input type="text" th:field="*{material}"></td>
+            <td>
+                <input type="text" id="material" name="material" required>
+            </td>
         </tr>
         <tr>
             <td>Mô tả:</td>
-            <td><input type="text" th:field="*{description}"></td>
+            <td>
+                <textarea id="description" name="description"></textarea>
+            </td>
         </tr>
         <tr>
-            <td>Giá:</td>
-            <td><input type="text" th:field="*{price}"></td>
+            <td>Giá (VNĐ):</td>
+            <td>
+                <input type="number" id="price" name="price" required>
+            </td>
         </tr>
         <tr>
             <td>Ảnh:</td>
-            <td><input type="file" th:field="*{image}"></td>
+            <td>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </td>
         </tr>
         <tr>
-            <td>Danh mục:</td>
             <td>
-                <select th:field="*{category}">
-                    <option th:each="c: ${categories}" th:value="${c.id}" th:text="${c.category}"></option>
+                <label for="category">Danh mục:</label>
+            </td>
+            <td>
+                <select id="category" name="category" required>
+                    <option value="">-- Select category --</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}"
+                            th:text="${category.category}"></option>
                 </select>
             </td>
         </tr>

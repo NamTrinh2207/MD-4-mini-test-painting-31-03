@@ -2,6 +2,7 @@ package com.example.painting.configuration;
 
 import com.example.painting.filter.EncodingFilter;
 import com.example.painting.formatter.CategoryFormatter;
+import com.example.painting.model.PaintingFrom;
 import com.example.painting.service.category.CategoryService;
 import com.example.painting.service.category.ICategoryService;
 import com.example.painting.service.painting.IPaintingService;
@@ -11,10 +12,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -147,6 +150,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware, Web
         return new PaintingService();
     }
 
+    @Bean
+    public PaintingFrom paintingFrom(){
+        return new PaintingFrom();
+    }
+
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -156,7 +164,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware, Web
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-        resolver.setFallbackPageable(PageRequest.of(0, 10));
+        resolver.setFallbackPageable(PageRequest.of(0, 3));
         argumentResolvers.add(resolver);
     }
 

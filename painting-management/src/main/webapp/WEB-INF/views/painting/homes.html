@@ -26,7 +26,7 @@
 </div>
 <form>
     <input placeholder="Nhập tên tranh..." name="search" type="text"/>
-
+    &nbsp&nbsp;
     <select name="search2" th:object="${categories}">
         <option th:each="c :${categories}" th:value="${c.id}" th:text="${c.category}"></option>
     </select>
@@ -35,11 +35,11 @@
 <table>
     <tr>
         <th>Tên</th>
-        <th>Chiều cao</th>
-        <th>Chiều rộng</th>
+        <th>Chiều cao (cm)</th>
+        <th>Chiều rộng (cm)</th>
         <th>Chất liệu</th>
         <th>Mô tả</th>
-        <th>Giá</th>
+        <th>Giá (VNĐ)</th>
         <th>Ảnh</th>
         <th>Danh mục</th>
         <th>Sửa</th>
@@ -52,7 +52,7 @@
         <td th:text="${p.material}"></td>
         <td th:text="${p.description}"></td>
         <td th:text="${p.price}"></td>
-        <td><img width="100" height="100" th:src="@{'/image/' + ${p.image}}" alt=""></td>
+        <td><img width="300" height="170" th:src="@{'/image/' + ${p.image}}" alt=""></td>
         <td th:if="${p.category}" th:text="${p.category.getCategory()}"></td>
         <td th:unless="${p.category}"></td>
         <td>

@@ -37,8 +37,8 @@
             <td><input type="text" th:field="*{price}"></td>
         </tr>
         <tr>
-            <td>Ảnh: <img width="100" height="100" th:src="@{'/image/' + ${paintings.image}}" alt=""></td>
-            <td><input type="file" th:field="*{image}"></td>
+            <td>Ảnh: </td>
+            <td><img width="300" height="170" th:src="@{'/image/' + ${paintings.image}}" alt=""><br><input type="file" th:field="*{image}"></td>
         </tr>
         <tr>
             <td>Danh mục:</td>

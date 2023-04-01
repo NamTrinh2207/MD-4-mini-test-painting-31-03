@@ -11,10 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -28,6 +30,8 @@ public class PaintingController {
     private ICategoryService categoryRepo;
     @Autowired
     private IPaintingService paintingRepo;
+    @Autowired
+    private PaintingFrom paintingFr;
 
     @ModelAttribute("categories")
     public Iterable<Category> categories() {
@@ -59,7 +63,15 @@ public class PaintingController {
     }
 
     @PostMapping("/save")
-    public ModelAndView createNewPainting(@ModelAttribute PaintingFrom paintingFrom) {
+    public ModelAndView createNewPainting(@Valid @ModelAttribute PaintingFrom paintingFrom, BindingResult bindingResult) {
+        // Validate
+        paintingFr.validate(paintingFrom, bindingResult);
+
+        // Check for errors
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("/painting/create");
+        }
+        // Save image
         MultipartFile multipartFile = paintingFrom.getImage();
         String fileName = multipartFile.getOriginalFilename();
         try {
@@ -67,15 +79,20 @@ public class PaintingController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        // Save painting
         Painting painting = new Painting(paintingFrom.getName(), paintingFrom.getHeight(), paintingFrom.getWidth(),
                 paintingFrom.getMaterial(), paintingFrom.getDescription(), paintingFrom.getPrice(), fileName,
                 paintingFrom.getCategory());
         paintingRepo.save(painting);
+
+        // Return success message
         ModelAndView modelAndView = new ModelAndView("/painting/create");
         modelAndView.addObject("paintings", new Painting());
         modelAndView.addObject("mess", "create a new painting successfully");
         return modelAndView;
     }
+
 
     //xoa tranh
     @GetMapping("/delete/{id}")

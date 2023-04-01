@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete customer</title>
+    <title>Delete painting</title>
 </head>
 <body>
 <h1>Delete paintings</h1>
@@ -12,15 +12,15 @@
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td> Name:</td>
+            <td> Tên tranh:</td>
             <td th:text="${paintings.name}"></td>
         </tr>
         <tr>
-            <td> Chiều cao:</td>
+            <td> Chiều cao (cm):</td>
             <td th:text="${paintings.height}"></td>
         </tr>
         <tr>
-            <td> Chiều rộng:</td>
+            <td> Chiều rộng (cm):</td>
             <td th:text="${paintings.width}"></td>
         </tr>
         <tr>
@@ -32,12 +32,12 @@
             <td th:text="${paintings.description}"></td>
         </tr>
         <tr>
-            <td> Giá:</td>
+            <td> Giá (VNĐ):</td>
             <td th:text="${paintings.price}"></td>
         </tr>
         <tr>
             <td> Ảnh:</td>
-            <td><img width="100" height="100" th:src="@{'/image/' + ${paintings.image}}" alt=""></td>
+            <td><img width="300" height="170" th:src="@{'/image/' + ${paintings.image}}" alt=""></td>
         </tr>
         <tr>
             <td> Danh mục:</td>
