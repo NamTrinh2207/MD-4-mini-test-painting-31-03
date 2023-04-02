@@ -6,6 +6,77 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create new painting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0 auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 16px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"],
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            margin: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover,
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        select {
+            height: 40px;
+        }
+        td {
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 <h3>Create new painting</h3>
@@ -15,30 +86,24 @@
 <form th:object="${paintings}" th:action="@{/paintings/save}" th:method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>Tên tranh:</td>
+            <td><label for="name">Tên tranh:</label></td>
             <td><input type="text" id="name" name="name" required></td>
         </tr>
         <tr>
-            <td>Chiều cao (cm):</td>
+            <td><label for="height">Chiều cao (cm):</label></td>
             <td><input type="number" id="height" name="height" required></td>
         </tr>
         <tr>
-            <td>Chiều rộng (cm):</td>
-            <td>
-                <input type="number" id="width" name="width" required>
-            </td>
+            <td><label for="width">Chiều rộng (cm):</label></td>
+            <td><input type="number" id="width" name="width" required></td>
         </tr>
         <tr>
-            <td>Chất liệu:</td>
-            <td>
-                <input type="text" id="material" name="material" required>
-            </td>
+            <td><label for="material">Chất liệu:</label></td>
+            <td><input type="text" id="material" name="material" required></td>
         </tr>
         <tr>
-            <td>Mô tả:</td>
-            <td>
-                <textarea id="description" name="description"></textarea>
-            </td>
+            <td><label for="description">Mô tả:</label></td>
+            <td><textarea id="description" name="description"></textarea></td>
         </tr>
         <tr>
             <td>Giá (VNĐ):</td>
@@ -67,7 +132,7 @@
         <tr>
             <td>
                 <button type="submit">SAVE</button>
-                <button><a th:href="@{/paintings}">HOME</a></button>
+                <button><a th:href="@{/paintings}">CANCEL</a></button>
             </td>
 
         </tr>

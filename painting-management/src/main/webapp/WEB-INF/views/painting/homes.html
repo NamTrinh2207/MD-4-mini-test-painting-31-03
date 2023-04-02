@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -6,27 +7,125 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table, tr, th, td {
-            border: 1px solid black;
-            padding: 5px 20px;
+        body {
+            font-family: Arial, sans-serif;
+            width: 90%;
+            margin: 20px auto;
+        }
+        form {
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+
+        input[type="text"],
+        select {
+            font-size: 12px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: center;
         }
 
-        body {
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        table td:last-child, table th:last-child {
+            text-align: center;
+            width: 10%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
             text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        div {
+            margin: 20px 0;
+        }
+
+        div > a {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        div > span {
+            padding: 8px 16px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        div > a:hover {
+            background-color: #3e8e41;
         }
     </style>
 </head>
 <body>
 <div>
-    <a th:href="@{/paintings/create}">Create new painting</a>
-</div>
-<div>
+    <a th:href="@{/paintings/create}">Create new painting</a>&nbsp;
     <a th:href="@{/categories}">List categories</a>
 </div>
 <form>
     <input placeholder="Nhập tên tranh..." name="search" type="text"/>
-    &nbsp&nbsp;
     <select name="search2" th:object="${categories}">
         <option th:each="c :${categories}" th:value="${c.id}" th:text="${c.category}"></option>
     </select>
@@ -52,7 +151,7 @@
         <td th:text="${p.material}"></td>
         <td th:text="${p.description}"></td>
         <td th:text="${p.price}"></td>
-        <td><img width="300" height="170" th:src="@{'/image/' + ${p.image}}" alt=""></td>
+        <td><img width="300" height="170" alt="" th:src="@{'/image/' + ${p.image}}"></td>
         <td th:if="${p.category}" th:text="${p.category.getCategory()}"></td>
         <td th:unless="${p.category}"></td>
         <td>

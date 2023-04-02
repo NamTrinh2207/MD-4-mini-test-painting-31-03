@@ -1,14 +1,11 @@
 package com.example.painting.model;
 
 import org.springframework.stereotype.Component;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartFile;
 
 
 @Component
-public class PaintingFrom implements Validator {
+public class PaintingFrom {
     private Long id;
     private String name;
     private Long height;
@@ -103,65 +100,5 @@ public class PaintingFrom implements Validator {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return PaintingFrom.class.equals(clazz);
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-        PaintingFrom paintingFrom = (PaintingFrom) target;
-
-        // validate name
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
-        if (paintingFrom.getName().length() < 2 || paintingFrom.getName().length() > 50) {
-            errors.rejectValue("name", "Size.paintingForm.name");
-        }
-
-        // validate height
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "height", "NotEmpty");
-        if (paintingFrom.getHeight() <= 0) {
-            errors.rejectValue("height", "Positive.paintingForm.height");
-        }
-
-        // validate width
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "width", "NotEmpty");
-        if (paintingFrom.getWidth() <= 0) {
-            errors.rejectValue("width", "Positive.paintingForm.width");
-        }
-
-        // validate material
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "material", "NotEmpty");
-        if (paintingFrom.getMaterial().length() < 2 || paintingFrom.getMaterial().length() > 50) {
-            errors.rejectValue("material", "Size.paintingForm.material");
-        }
-
-        // validate description
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "NotEmpty");
-        if (paintingFrom.getDescription().length() < 2 || paintingFrom.getDescription().length() > 500) {
-            errors.rejectValue("description", "Size.paintingForm.description");
-        }
-
-        // validate price
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "NotEmpty");
-        if (paintingFrom.getPrice() <= 0) {
-            errors.rejectValue("price", "Positive.paintingForm.price");
-        }
-
-        // validate category
-        if (paintingFrom.getCategory() == null || paintingFrom.getCategory().getId() == null) {
-            errors.rejectValue("category", "NotEmpty");
-        }
-
-        // validate image
-        if (paintingFrom.getImage() == null || paintingFrom.getImage().isEmpty()) {
-            errors.rejectValue("image", "NotEmpty");
-        } else {
-            String contentType = paintingFrom.getImage().getContentType();
-            if (!contentType.equals("image/jpeg") && !contentType.equals("image/png")) {
-                errors.rejectValue("image", "Type.paintingForm.image");
-            }
-        }
     }
 }

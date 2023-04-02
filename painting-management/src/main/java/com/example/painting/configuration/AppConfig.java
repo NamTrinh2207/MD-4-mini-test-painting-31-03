@@ -150,11 +150,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware, Web
         return new PaintingService();
     }
 
-    @Bean
-    public PaintingFrom paintingFrom(){
-        return new PaintingFrom();
-    }
-
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
